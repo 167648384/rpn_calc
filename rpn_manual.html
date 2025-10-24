@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>rpn_manual.nim</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐳</text></svg>">
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="nimib 0.3.13" name="generator">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.min.css">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/pietroppeter/nimib/assets/atom-one-light.css'>
+    <script src="https://cdn.jsdelivr.net/gh/pietroppeter/nimib@main/assets/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  <style>
+.nb-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nb-small {
+  font-size: 0.8rem;
+}
+button.nb-small {
+  float: right;
+  padding: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+section#source {
+  display:none
+}
+pre > code {
+  font-size: 1.2em;
+}
+.nb-output {
+  line-height: 1.15;
+}
+figure {
+  margin: 2rem 0;
+}
+figcaption {
+  text-align: center;
+}
+  
+</style>
+  
+</head>
+<body>
+<header>
+<div class="nb-box">
+  <span><a href=".">🏡</a></span>
+  <span><code>rpn_manual.nim</code></span>
+  <span></span>
+</div>
+<hr>
+</header><main>
+<pre>rpn_manual.html</pre>
+<pre><code class="html hljs"></code></pre>
+
+<h1>RPN 计算器使用手册</h1>
+<p>本文档对应可执行文件：<code>rpn_calc</code></p>
+<h2>1. 安装与编译</h2>
+<p>进入作业目录并编译：</p>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  cd ~/Work/rpn_calc
+  g++ -std=c++17 -O2 rpn_calc.cpp -o rpn_calc
+  &quot;&quot;&quot;</span></code></pre>
+<h2>2. 基本使用</h2>
+<p>交互式运行示例：</p>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  ./rpn_calc
+  &gt; 1 2 + 3 + 7 7 * +
+  结果: 55
+  &quot;&quot;&quot;</span></code></pre>
+<h2>3. 支持的操作</h2>
+<ul>
+<li>四则运算：<code>+ - * /</code></li>
+</ul>
+<ul>
+<li>幂运算：<code>pow</code>（例：<code>2 3 pow → 8</code>）</li>
+</ul>
+<ul>
+<li>平方根：<code>sqrt</code></li>
+</ul>
+<ul>
+<li>三角函数：<code>sin cos tan</code>（角度单位为弧度）</li>
+</ul>
+<h2>4. 栈操作</h2>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  &gt; 5 6
+  结果: 6   （栈顶）
+  &quot;&quot;&quot;</span></code></pre>
+<p>命令行里看不到中间栈，出错时会自动清栈重新来。</p>
+<h2>5. 错误说明</h2>
+<ul>
+<li>除零 → 错误：除零</li>
+</ul>
+<ul>
+<li>栈空时仍 pop → 错误：栈空</li>
+</ul>
+<ul>
+<li>负数开方 → 错误：负数开方</li>
+</ul>
+<ul>
+<li>未知操作符 → 错误：未知操作符</li>
+</ul>
+<h2>6. 示例输入输出对照</h2>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  输入:  10 0 /
+  输出:  错误: 除零
+  输入:  2 3 pow
+  输出:  结果: 8
+  输入:  9 sqrt
+  输出:  结果: 3
+  &quot;&quot;&quot;</span></code></pre>
+</main>
+<footer>
+<div class="nb-box">
+  <span><span class="nb-small">made with <a href="https://pietroppeter.github.io/nimib/">nimib 🐳</a></span></span>
+  <span></span>
+  <span><button class="nb-small" id="show" onclick="toggleSourceDisplay()">Show Source</button></span>
+</div>
+</footer>
+<section id="source">
+<pre><code class="nohighlight nim hljs"><span class="hljs-keyword">import</span> nimib
+
+<span class="hljs-comment"># ---------- 初始化（老版本无参） ----------</span>
+nbInit()
+nbFile: <span class="hljs-string">&quot;rpn_manual.html&quot;</span>          <span class="hljs-comment"># 老版必须手动指定输出文件</span>
+
+<span class="hljs-comment"># ---------- 标题 ----------</span>
+nbText: <span class="hljs-string">&quot;# RPN 计算器使用手册&quot;</span>
+nbText: <span class="hljs-string">&quot;本文档对应可执行文件：`rpn_calc`&quot;</span>
+
+<span class="hljs-comment"># ---------- 1. 安装与编译 ----------</span>
+nbText: <span class="hljs-string">&quot;## 1. 安装与编译&quot;</span>
+nbText: <span class="hljs-string">&quot;进入作业目录并编译：&quot;</span>
+nbCode:
+  <span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  cd ~/Work/rpn_calc
+  g++ -std=c++17 -O2 rpn_calc.cpp -o rpn_calc
+  &quot;&quot;&quot;</span>
+
+<span class="hljs-comment"># ---------- 2. 基本使用 ----------</span>
+nbText: <span class="hljs-string">&quot;## 2. 基本使用&quot;</span>
+nbText: <span class="hljs-string">&quot;交互式运行示例：&quot;</span>
+nbCode:
+  <span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  ./rpn_calc
+  &gt; 1 2 + 3 + 7 7 * +
+  结果: 55
+  &quot;&quot;&quot;</span>
+
+<span class="hljs-comment"># ---------- 3. 支持的操作 ----------</span>
+nbText: <span class="hljs-string">&quot;## 3. 支持的操作&quot;</span>
+nbText: <span class="hljs-string">&quot;- 四则运算：`+ - * /`&quot;</span>
+nbText: <span class="hljs-string">&quot;- 幂运算：`pow`（例：`2 3 pow → 8`）&quot;</span>
+nbText: <span class="hljs-string">&quot;- 平方根：`sqrt`&quot;</span>
+nbText: <span class="hljs-string">&quot;- 三角函数：`sin cos tan`（角度单位为弧度）&quot;</span>
+
+<span class="hljs-comment"># ---------- 4. 栈操作 ----------</span>
+nbText: <span class="hljs-string">&quot;## 4. 栈操作&quot;</span>
+nbCode:
+  <span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  &gt; 5 6
+  结果: 6   （栈顶）
+  &quot;&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;命令行里看不到中间栈，出错时会自动清栈重新来。&quot;</span>
+
+<span class="hljs-comment"># ---------- 5. 错误说明 ----------</span>
+nbText: <span class="hljs-string">&quot;## 5. 错误说明&quot;</span>
+nbText: <span class="hljs-string">&quot;- 除零 → 错误：除零&quot;</span>
+nbText: <span class="hljs-string">&quot;- 栈空时仍 pop → 错误：栈空&quot;</span>
+nbText: <span class="hljs-string">&quot;- 负数开方 → 错误：负数开方&quot;</span>
+nbText: <span class="hljs-string">&quot;- 未知操作符 → 错误：未知操作符&quot;</span>
+
+<span class="hljs-comment"># ---------- 6. 示例输入输出对照 ----------</span>
+nbText: <span class="hljs-string">&quot;## 6. 示例输入输出对照&quot;</span>
+nbCode:
+  <span class="hljs-keyword">discard</span> <span class="hljs-string">&quot;&quot;&quot;
+  输入:  10 0 /
+  输出:  错误: 除零
+  输入:  2 3 pow
+  输出:  结果: 8
+  输入:  9 sqrt
+  输出:  结果: 3
+  &quot;&quot;&quot;</span>
+
+<span class="hljs-comment"># ---------- 生成 ----------</span>
+nbSave()
+</code></pre>
+</section><script>
+function toggleSourceDisplay() {
+  var btn = document.getElementById("show")
+  var source = document.getElementById("source");
+  if (btn.innerHTML=="Show Source") {
+    btn.innerHTML = "Hide Source";
+    source.style.display = "block";
+  } else {
+    btn.innerHTML = "Show Source";
+    source.style.display = "none";
+  }
+}
+</script></body>
+</html>
