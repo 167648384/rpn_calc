@@ -50,12 +50,216 @@ figcaption {
 <div class="nb-box">
   <span><a href=".">🏡</a></span>
   <span><code>rpn_manual.nim</code></span>
-  <span></span>
+  <span><a href="https://github.com/167648384/rpn_calc"><svg aria-hidden="true" width="1.2em" height="1.2em" style="vertical-align: middle;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59c.4.07.55-.17.55-.38c0-.19-.01-.82-.01-1.49c-2.01.37-2.53-.49-2.69-.94c-.09-.23-.48-.94-.82-1.13c-.28-.15-.68-.52-.01-.53c.63-.01 1.08.58 1.23.82c.72 1.21 1.87.87 2.33.66c.07-.52.28-.87.51-1.07c-1.78-.2-3.64-.89-3.64-3.95c0-.87.31-1.59.82-2.15c-.08-.2-.36-1.02.08-2.12c0 0 .67-.21 2.2.82c.64-.18 1.32-.27 2-.27c.68 0 1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82c.44 1.1.16 1.92.08 2.12c.51.56.82 1.27.82 2.15c0 3.07-1.87 3.75-3.65 3.95c.29.25.54.73.54 1.48c0 1.07-.01 1.93-.01 2.2c0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" fill="#000"></path></svg></a></span>
 </div>
 <hr>
 </header><main>
 <pre>rpn_manual.html</pre>
-<pre><code class="html hljs"></code></pre>
+<pre><code class="html hljs">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en-us&quot;&gt;
+&lt;head&gt;
+  &lt;title&gt;rpn_manual.nim&lt;/title&gt;
+  &lt;link rel=&quot;icon&quot; href=&quot;data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2280%22&gt;🐳&lt;/text&gt;&lt;/svg&gt;&quot;&gt;
+  &lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
+  &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;&gt;
+  &lt;meta content=&quot;nimib 0.3.13&quot; name=&quot;generator&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/water.css@2/out/light.min.css&quot;&gt;
+  &lt;link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/pietroppeter/nimib/assets/atom-one-light.css'&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/gh/pietroppeter/nimib@main/assets/highlight.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;hljs.highlightAll();&lt;/script&gt;
+
+  &lt;style&gt;
+.nb-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nb-small {
+  font-size: 0.8rem;
+}
+button.nb-small {
+  float: right;
+  padding: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+section#source {
+  display:none
+}
+pre &gt; code {
+  font-size: 1.2em;
+}
+.nb-output {
+  line-height: 1.15;
+}
+figure {
+  margin: 2rem 0;
+}
+figcaption {
+  text-align: center;
+}
+  
+&lt;/style&gt;
+  
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header&gt;
+&lt;div class=&quot;nb-box&quot;&gt;
+  &lt;span&gt;&lt;a href=&quot;.&quot;&gt;🏡&lt;/a&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;code&gt;rpn_manual.nim&lt;/code&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/header&gt;&lt;main&gt;
+&lt;pre&gt;rpn_manual.html&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;html hljs&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;RPN 计算器使用手册&lt;/h1&gt;
+&lt;p&gt;本文档对应可执行文件：&lt;code&gt;rpn_calc&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;1. 安装与编译&lt;/h2&gt;
+&lt;p&gt;进入作业目录并编译：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;nohighlight hljs nim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  cd ~/Work/rpn_calc
+  g++ -std=c++17 -O2 rpn_calc.cpp -o rpn_calc
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;2. 基本使用&lt;/h2&gt;
+&lt;p&gt;交互式运行示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;nohighlight hljs nim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  ./rpn_calc
+  &amp;gt; 1 2 + 3 + 7 7 * +
+  结果: 55
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;3. 支持的操作&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;四则运算：&lt;code&gt;+ - * /&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;幂运算：&lt;code&gt;pow&lt;/code&gt;（例：&lt;code&gt;2 3 pow → 8&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;平方根：&lt;code&gt;sqrt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;三角函数：&lt;code&gt;sin cos tan&lt;/code&gt;（角度单位为弧度）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;4. 栈操作&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;nohighlight hljs nim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  &amp;gt; 5 6
+  结果: 6   （栈顶）
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;命令行里看不到中间栈，出错时会自动清栈重新来。&lt;/p&gt;
+&lt;h2&gt;5. 错误说明&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;除零 → 错误：除零&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;栈空时仍 pop → 错误：栈空&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;负数开方 → 错误：负数开方&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;未知操作符 → 错误：未知操作符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;6. 示例输入输出对照&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;nohighlight hljs nim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  输入:  10 0 /
+  输出:  错误: 除零
+  输入:  2 3 pow
+  输出:  结果: 8
+  输入:  9 sqrt
+  输出:  结果: 3
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/main&gt;
+&lt;footer&gt;
+&lt;div class=&quot;nb-box&quot;&gt;
+  &lt;span&gt;&lt;span class=&quot;nb-small&quot;&gt;made with &lt;a href=&quot;https://pietroppeter.github.io/nimib/&quot;&gt;nimib 🐳&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;button class=&quot;nb-small&quot; id=&quot;show&quot; onclick=&quot;toggleSourceDisplay()&quot;&gt;Show Source&lt;/button&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;/footer&gt;
+&lt;section id=&quot;source&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;nohighlight nim hljs&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; nimib
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 初始化（老版本无参） ----------&lt;/span&gt;
+nbInit()
+nbFile: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;rpn_manual.html&amp;quot;&lt;/span&gt;          &lt;span class=&quot;hljs-comment&quot;&gt;# 老版必须手动指定输出文件&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 标题 ----------&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;# RPN 计算器使用手册&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;本文档对应可执行文件：`rpn_calc`&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 1. 安装与编译 ----------&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;## 1. 安装与编译&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;进入作业目录并编译：&amp;quot;&lt;/span&gt;
+nbCode:
+  &lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  cd ~/Work/rpn_calc
+  g++ -std=c++17 -O2 rpn_calc.cpp -o rpn_calc
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 2. 基本使用 ----------&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;## 2. 基本使用&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;交互式运行示例：&amp;quot;&lt;/span&gt;
+nbCode:
+  &lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  ./rpn_calc
+  &amp;gt; 1 2 + 3 + 7 7 * +
+  结果: 55
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 3. 支持的操作 ----------&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;## 3. 支持的操作&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 四则运算：`+ - * /`&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 幂运算：`pow`（例：`2 3 pow → 8`）&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 平方根：`sqrt`&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 三角函数：`sin cos tan`（角度单位为弧度）&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 4. 栈操作 ----------&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;## 4. 栈操作&amp;quot;&lt;/span&gt;
+nbCode:
+  &lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  &amp;gt; 5 6
+  结果: 6   （栈顶）
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;命令行里看不到中间栈，出错时会自动清栈重新来。&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 5. 错误说明 ----------&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;## 5. 错误说明&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 除零 → 错误：除零&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 栈空时仍 pop → 错误：栈空&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 负数开方 → 错误：负数开方&amp;quot;&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;- 未知操作符 → 错误：未知操作符&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 6. 示例输入输出对照 ----------&lt;/span&gt;
+nbText: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;## 6. 示例输入输出对照&amp;quot;&lt;/span&gt;
+nbCode:
+  &lt;span class=&quot;hljs-keyword&quot;&gt;discard&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+  输入:  10 0 /
+  输出:  错误: 除零
+  输入:  2 3 pow
+  输出:  结果: 8
+  输入:  9 sqrt
+  输出:  结果: 3
+  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# ---------- 生成 ----------&lt;/span&gt;
+nbSave()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/section&gt;&lt;script&gt;
+function toggleSourceDisplay() {
+  var btn = document.getElementById(&quot;show&quot;)
+  var source = document.getElementById(&quot;source&quot;);
+  if (btn.innerHTML==&quot;Show Source&quot;) {
+    btn.innerHTML = &quot;Hide Source&quot;;
+    source.style.display = &quot;block&quot;;
+  } else {
+    btn.innerHTML = &quot;Show Source&quot;;
+    source.style.display = &quot;none&quot;;
+  }
+}
+&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 
 <h1>RPN 计算器使用手册</h1>
 <p>本文档对应可执行文件：<code>rpn_calc</code></p>
@@ -113,6 +317,9 @@ figcaption {
   输入:  9 sqrt
   输出:  结果: 3
   &quot;&quot;&quot;</span></code></pre>
+<h2>7. 源码与更新</h2>
+<p>开源地址：https://github.com/167648384/rpn_calc</p>
+<p>提交 Issue 欢迎反馈 bug 或新功能需求。</p>
 </main>
 <footer>
 <div class="nb-box">
@@ -185,7 +392,11 @@ nbCode:
   输入:  9 sqrt
   输出:  结果: 3
   &quot;&quot;&quot;</span>
-
+<span class="hljs-comment"># ---------- 7. 源码与更新 ----------</span>
+nbText: <span class="hljs-string">&quot;## 7. 源码与更新&quot;</span>
+nbText: <span class="hljs-string">&quot;开源地址：https://github.com/167648384/rpn_calc&quot;</span>
+nbText: <span class="hljs-string">&quot;提交 Issue 欢迎反馈 bug 或新功能需求。&quot;</span>
+  
 <span class="hljs-comment"># ---------- 生成 ----------</span>
 nbSave()
 </code></pre>
